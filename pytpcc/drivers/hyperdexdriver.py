@@ -35,7 +35,7 @@ from pprint import pprint,pformat
 import constants
 
 from abstractdriver import *
-from pyparsing import tableName
+#from pyparsing import tableName
 ## ==============================================
 ## AbstractDriver
 ## ==============================================
@@ -43,7 +43,7 @@ class HyperdexDriver(AbstractDriver):
 
     DEFAULT_CONFIG = {
         "hostname": ("The host address to the Hyperdex database","127.0.0.1"),
-        "port": ("Port number",2019),
+        "port": ("Port number",1982),
         "name": ("Name","tpcc"),
         "tolerance":("NumFailuresToTolerate", 1),
         "partitions": ("NumPartitionsPerSpace", 8)
@@ -83,7 +83,7 @@ class HyperdexDriver(AbstractDriver):
         
         self.admin.add_space('''
         space WAREHOUSE
-        key W_ID
+        key W_ID_KEY
         attributes
             string W_ID,
             string W_NAME,
@@ -100,7 +100,7 @@ class HyperdexDriver(AbstractDriver):
         
         self.admin.add_space('''
         space DISTRICT
-        key D_W_ID_D_ID
+        key D_W_ID_D_ID_KEY
         attributes
             string D_ID,
             string D_W_ID,
@@ -119,7 +119,7 @@ class HyperdexDriver(AbstractDriver):
         
         self.admin.add_space('''
         space ITEM
-        key I_ID
+        key I_ID_KEY
         attributes
             string I_ID,
             string I_IM_ID,
@@ -132,7 +132,7 @@ class HyperdexDriver(AbstractDriver):
         
         self.admin.add_space('''
         space CUSTOMER
-        key C_W_ID_C_D_ID_C_ID
+        key C_W_ID_C_D_ID_C_ID_KEY
         attributes
             string C_ID,
             string C_D_ID,
@@ -161,7 +161,7 @@ class HyperdexDriver(AbstractDriver):
         
         self.admin.add_space('''
         space HISTORY
-        key U_U_ID
+        key U_U_ID_KEY
         attributes
             string H_C_ID,
             string H_C_D_ID,
@@ -177,7 +177,7 @@ class HyperdexDriver(AbstractDriver):
         
         self.admin.add_space('''
         space STOCK
-        key S_W_ID_S_I_ID
+        key S_W_ID_S_I_ID_KEY
         attributes
             string S_I_ID,
             string S_W_ID,
@@ -202,7 +202,7 @@ class HyperdexDriver(AbstractDriver):
         
         self.admin.add_space('''
         space ORDERS
-        key O_W_ID_O_D_ID_O_ID
+        key O_W_ID_O_D_ID_O_ID_KEY
         attributes
             string O_ID,
             string O_C_ID,
@@ -218,7 +218,7 @@ class HyperdexDriver(AbstractDriver):
         
         self.admin.add_space('''
         space NEW_ORDER
-        key NO_D_ID_NO_W_ID_NO_O_ID
+        key NO_D_ID_NO_W_ID_NO_O_ID_KEY
         attributes
             string NO_O_ID,
             string NO_D_ID,
@@ -229,7 +229,7 @@ class HyperdexDriver(AbstractDriver):
         
         self.admin.add_space('''
         space ORDER_LINE
-        key OL_W_ID_OL_D_ID_OL_O_ID_OL_NUMBER
+        key OL_W_ID_OL_D_ID_OL_O_ID_OL_NUMBER_KEY
         attributes
             string OL_O_ID,
             string OL_D_ID,
@@ -237,7 +237,7 @@ class HyperdexDriver(AbstractDriver):
             string OL_NUMBER,
             string OL_I_ID,
             string OL_SUPPLY_W_ID,
-            string OL_DELIVERY_D
+            string OL_DELIVERY_D,
             string OL_QUANTITY,
             string OL_AMOUNT,
             string OL_DIST_INFO
